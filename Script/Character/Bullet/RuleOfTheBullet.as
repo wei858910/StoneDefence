@@ -1,0 +1,3 @@
+class ARuleOfTheBullet : AActor
+{
+};

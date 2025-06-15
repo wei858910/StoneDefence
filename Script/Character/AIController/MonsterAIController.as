@@ -1,0 +1,3 @@
+class AMonsterAIController : AAIController
+{
+};

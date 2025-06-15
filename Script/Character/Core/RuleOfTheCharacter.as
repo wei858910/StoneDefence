@@ -1,0 +1,3 @@
+class ARuleOfTheCharacter : ACharacter
+{
+};
