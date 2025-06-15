@@ -1,0 +1,22 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{A9DC9A78-4FAA-2A2C-B28E-5E9AFCF10FC1}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "StoneDefence",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	]
+}
