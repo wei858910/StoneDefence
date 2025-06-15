@@ -1,0 +1,3 @@
+class UUIPlayerSkillSystem : UUIRuleOfTheWidget
+{
+};

@@ -1,0 +1,3 @@
+class UUIGameInfoPrintSystem : UUIRuleOfTheWidget
+{
+};

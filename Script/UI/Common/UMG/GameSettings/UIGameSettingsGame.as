@@ -1,0 +1,3 @@
+class UUIGameSettingsGame : UUIRuleOfTheWidget
+{
+};

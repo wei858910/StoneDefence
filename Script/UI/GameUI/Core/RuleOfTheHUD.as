@@ -1,0 +1,3 @@
+class ARuleOfTheHUD : AHUD
+{
+};

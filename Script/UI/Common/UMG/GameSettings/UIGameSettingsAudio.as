@@ -1,0 +1,3 @@
+class UUIGameSettingsAudio : UUIRuleOfTheWidget
+{
+};

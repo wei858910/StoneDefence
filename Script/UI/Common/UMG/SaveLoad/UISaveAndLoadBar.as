@@ -1,0 +1,3 @@
+class UUISaveAndLoadBar : UUIRuleOfTheWidget
+{
+};

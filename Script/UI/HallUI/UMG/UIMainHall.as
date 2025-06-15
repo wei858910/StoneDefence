@@ -1,0 +1,3 @@
+class UUIMainHall : UUIRuleOfTheWidget
+{
+};

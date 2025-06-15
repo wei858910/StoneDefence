@@ -1,0 +1,3 @@
+class UUIGameSettingsVideo : UUIRuleOfTheWidget
+{
+};

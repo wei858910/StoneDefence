@@ -1,0 +1,3 @@
+class UUIToolBarSystem : UUIRuleOfTheWidget
+{
+};

@@ -1,0 +1,3 @@
+class UUILevelButton : UUIRuleOfTheWidget
+{
+};
