@@ -1,13 +1,4 @@
-class ATowerDefencePlayerController : APlayerController
+class ATowerDefencePlayerController : ATowerDefencePlayerControllerBase
 {
 
-    UFUNCTION(BlueprintOverride)
-    void Tick(float DeltaSeconds)
-    {
-    }
-
-    UFUNCTION(BlueprintOverride)
-    void BeginPlay()
-    {
-    }
 };
