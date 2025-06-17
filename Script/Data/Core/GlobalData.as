@@ -1,0 +1,3 @@
+class UGlobalData : UObject
+{
+};
