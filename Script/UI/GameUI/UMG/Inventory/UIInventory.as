@@ -12,7 +12,7 @@ class UUIInventory : UUIRuleOfTheWidget
     UFUNCTION(BlueprintOverride)
     void Construct()
     {
-        LayoutInventorySlot(7, 3);
+        LayoutInventorySlot(3, 7);
     }
 
     void LayoutInventorySlot(int32 ColumnNumber, int32 RowNumber)
