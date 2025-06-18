@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{A9DC9A78-4FAA-2A2C-B28E-5E9AFCF10FC1}",
+	"EngineAssociation": "{8C1120D4-47DD-884F-FA12-8795E5494234}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -17,6 +17,10 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "AngelscriptEnhancedInput",
+			"Enabled": true
 		}
 	]
 }

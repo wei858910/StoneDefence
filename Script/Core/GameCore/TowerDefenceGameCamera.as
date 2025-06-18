@@ -14,8 +14,30 @@ class ATowerDefenceGameCamera : APawn
     UPROPERTY(DefaultComponent, Attach = CameraBoom, Category = "Camera")
     UBoxComponent MarkBox;
 
+    float32 MaxArmLength = 800.f;
+    float32 MinArmLength = 400.f;
+
     UFUNCTION(BlueprintOverride)
     void BeginPlay()
     {
+    }
+
+    void Zoom(bool bDrection, const float32& ZoomSpeed)
+    {
+
+        if (bDrection)
+        {
+            if (CameraBoom.TargetArmLength > MinArmLength)
+            {
+                CameraBoom.TargetArmLength -= ZoomSpeed;
+            }
+        }
+        else
+        {
+            if (CameraBoom.TargetArmLength < MaxArmLength)
+            {
+                CameraBoom.TargetArmLength += ZoomSpeed;
+            }
+        }
     }
 };
