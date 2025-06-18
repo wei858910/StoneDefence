@@ -7,7 +7,7 @@ class ARuleOfTheHUD : AHUD
     UFUNCTION(BlueprintOverride)
     void ConstructionScript()
     {
-        MainScreenClass = Cast<UClass>(LoadObject(nullptr, "/Game/UI/Game/UBP_MainScreen.UBP_MainScreen_C"));
+        MainScreenClass = Cast<UClass>(LoadObject(nullptr, "/Game/UI/Game/UIBP_MainScreen.UIBP_MainScreen_C"));
     }
 
     UFUNCTION(BlueprintOverride)

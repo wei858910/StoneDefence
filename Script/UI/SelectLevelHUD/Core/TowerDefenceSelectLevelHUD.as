@@ -9,7 +9,7 @@ class ATowerDefenceSelectLevelHUD : AHUD
     UFUNCTION(BlueprintOverride)
     void ConstructionScript()
     {
-        SelectLevelMainClass = Cast<UClass>(LoadObject(nullptr, "/Game/UI/Select/UBP_SelectLevelMain.UBP_SelectLevelMain_C"));
+        SelectLevelMainClass = Cast<UClass>(LoadObject(nullptr, "/Game/UI/Select/UIBP_SelectLevelMain.UIBP_SelectLevelMain_C"));
     }
 
     UFUNCTION(BlueprintOverride)

@@ -8,7 +8,7 @@ class ATowerDefenceHallHUD : AHUD
     UFUNCTION(BlueprintOverride)
     void ConstructionScript()
     {
-        MainHallClass = Cast<UClass>(LoadObject(nullptr, "/Game/UI/Hall/UBP_MainHall.UBP_MainHall_C"));
+        MainHallClass = Cast<UClass>(LoadObject(nullptr, "/Game/UI/Hall/UIBP_MainHall.UIBP_MainHall_C"));
     }
 
     UFUNCTION(BlueprintOverride)
