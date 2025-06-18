@@ -10,6 +10,13 @@ class ATowerDefencePlayerController : ATowerDefencePlayerControllerBase
     UEnhancedInputComponent EnhancedInputComponent;
 
     UFUNCTION(BlueprintOverride)
+    void ConstructionScript()
+    {
+        IMC = Cast<UInputMappingContext>(LoadObject(nullptr, "/Game/Input/IMC.IMC"));
+        IAMouseWheel = Cast<UInputAction>(LoadObject(nullptr, "/Game/Input/IA_MouseWheel.IA_MouseWheel"));
+    }
+
+    UFUNCTION(BlueprintOverride)
     void BeginPlay()
     {
         EnhancedInputComponent = UEnhancedInputComponent::Create(this);
@@ -47,12 +54,5 @@ class ATowerDefencePlayerController : ATowerDefencePlayerControllerBase
             // Wheel Down
             GameCamera.Zoom(false, ZoomSpeed);
         }
-    }
-
-    UFUNCTION(BlueprintOverride)
-    void ConstructionScript()
-    {
-        IMC = Cast<UInputMappingContext>(LoadObject(nullptr, "/Game/Input/IMC.IMC"));
-        IAMouseWheel = Cast<UInputAction>(LoadObject(nullptr, "/Game/Input/IA_MouseWheel.IA_MouseWheel"));
     }
 };
