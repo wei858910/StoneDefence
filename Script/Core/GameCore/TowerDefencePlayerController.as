@@ -17,8 +17,6 @@ class ATowerDefencePlayerController : ATowerDefencePlayerControllerBase
         UEnhancedInputLocalPlayerSubsystem EnhancedInputSystem = UEnhancedInputLocalPlayerSubsystem::Get(this);
         if (EnhancedInputSystem != nullptr)
         {
-            IMC = Cast<UInputMappingContext>(LoadObject(nullptr, "/Game/Input/IMC.IMC"));
-            IAMouseWheel = Cast<UInputAction>(LoadObject(nullptr, "/Game/Input/IA_MouseWheel.IA_MouseWheel"));
             if (IMC != nullptr && IAMouseWheel != nullptr)
             {
                 EnhancedInputSystem.AddMappingContext(IMC, 0, FModifyContextOptions());
@@ -49,5 +47,12 @@ class ATowerDefencePlayerController : ATowerDefencePlayerControllerBase
             // Wheel Down
             GameCamera.Zoom(false, ZoomSpeed);
         }
+    }
+
+    UFUNCTION(BlueprintOverride)
+    void ConstructionScript()
+    {
+        IMC = Cast<UInputMappingContext>(LoadObject(nullptr, "/Game/Input/IMC.IMC"));
+        IAMouseWheel = Cast<UInputAction>(LoadObject(nullptr, "/Game/Input/IA_MouseWheel.IA_MouseWheel"));
     }
 };
