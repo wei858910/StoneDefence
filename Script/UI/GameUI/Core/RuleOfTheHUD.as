@@ -1,3 +1,29 @@
 class ARuleOfTheHUD : AHUD
 {
+    private TSubclassOf<UUIMainScreen> MainScreenClass;
+
+    private UUIMainScreen MainScreen;
+
+    UFUNCTION(BlueprintOverride)
+    void ConstructionScript()
+    {
+        MainScreenClass = Cast<UClass>(LoadObject(nullptr, "/Game/UI/Game/UBP_MainScreen.UBP_MainScreen_C"));
+    }
+
+    UFUNCTION(BlueprintOverride)
+    void BeginPlay()
+    {
+        if (IsValid(MainScreenClass))
+        {
+            auto PC = Global::GetDefaultPlayerController();
+            if (IsValid(PC))
+            {
+                MainScreen = Cast<UUIMainScreen>(WidgetBlueprint::CreateWidget(MainScreenClass, PC));
+                if (IsValid(MainScreen))
+                {
+                    MainScreen.AddToViewport();
+                }
+            }
+        }
+    }
 };

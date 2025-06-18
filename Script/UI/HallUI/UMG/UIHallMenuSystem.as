@@ -32,6 +32,7 @@ class UUIHallMenuSystem : UUIRuleOfTheWidget
     UFUNCTION()
     private void GameStart()
     {
+        Gameplay::OpenLevel(n"SelectMap");
     }
 
     UFUNCTION()
