@@ -1,3 +1,3 @@
-class UUISaveAndLoadGameSystem : UUIRuleOfTheWidget
+class UUISaveAndLoadGameSystem : UUISaveAndLoadGameSystemBase
 {
 };

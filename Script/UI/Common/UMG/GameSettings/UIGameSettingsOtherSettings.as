@@ -1,3 +1,3 @@
-class UUIGameSettingsOtherSettings : UUIRuleOfTheWidget
+class UUIGameSettingsOtherSettings : UUIGameSettingsOtherSettingsBase
 {
 };

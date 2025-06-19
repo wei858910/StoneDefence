@@ -1,3 +1,3 @@
-class UUIGameSettingsVideo : UUIRuleOfTheWidget
+class UUIGameSettingsVideo : UUIGameSettingsVideoBase
 {
 };
