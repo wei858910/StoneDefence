@@ -1,3 +1,3 @@
-class UTowerDefenceGameInstance : UGameInstance
+class UTowerDefenceGameInstance : UTowerDefenceGameInstanceBase
 {
 };
