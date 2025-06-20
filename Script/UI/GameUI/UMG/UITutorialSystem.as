@@ -1,0 +1,4 @@
+class UUITutorialSystem : UUIRuleOfTheWidget
+{
+
+};

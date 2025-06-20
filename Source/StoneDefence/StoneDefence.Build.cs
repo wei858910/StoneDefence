@@ -15,6 +15,7 @@ public class StoneDefence : ModuleRules
 			"Engine",
 			"InputCore",
 			"EnhancedInput",
+			"UMG"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]
@@ -22,7 +23,8 @@ public class StoneDefence : ModuleRules
 			"StoneToolClass",
 			"SimpleScreenLoading",
 			"SimpleTutorial",
-			"SimpleGameSettings"
+			"SimpleGameSettings",
+			"SimpleArchives"
 		});
 
 		// Uncomment if you are using Slate UI

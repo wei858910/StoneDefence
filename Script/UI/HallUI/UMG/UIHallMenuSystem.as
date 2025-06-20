@@ -27,54 +27,45 @@ class UUIHallMenuSystem : UUIRuleOfTheWidget
     UFUNCTION(BlueprintOverride)
     void Construct()
     {
-        GameStartButton.OnClicked.AddUFunction(this, n"GameStart");
-        SecretTerritoryButton.OnClicked.AddUFunction(this, n"SecretTerritory");
-        HistoryButton.OnClicked.AddUFunction(this, n"History");
-        GameSettingsButton.OnClicked.AddUFunction(this, n"GameSettings");
-        TutorialWebsiteButton.OnClicked.AddUFunction(this, n"TutorialWebsite");
-        BrowserButton.OnClicked.AddUFunction(this, n"Browser");
-        SpecialContentButton.OnClicked.AddUFunction(this, n"SpecialContent");
-        QuitGameButton.OnClicked.AddUFunction(this, n"QuitGame");
     }
 
-    UFUNCTION()
-    private void GameStart()
+    void BindGameStart(FOnButtonClickedEvent OnClickedEvent)
     {
-        Gameplay::OpenLevel(n"SelectMap");
+        GameStartButton.OnClicked = OnClickedEvent;
     }
 
-    UFUNCTION()
-    private void SecretTerritory()
+    void BindSecretTerritory(FOnButtonClickedEvent OnClickedEvent)
     {
+        SecretTerritoryButton.OnClicked = OnClickedEvent;
     }
 
-    UFUNCTION()
-    private void History()
+    void BindHistory(FOnButtonClickedEvent OnClickedEvent)
     {
+        HistoryButton.OnClicked = OnClickedEvent;
     }
 
-    UFUNCTION()
-    private void GameSettings()
+    void BindGameSettings(FOnButtonClickedEvent OnClickedEvent)
     {
+        GameSettingsButton.OnClicked = OnClickedEvent;
     }
 
-    UFUNCTION()
-    private void TutorialWebsite()
+    void BindTutorialWebsite(FOnButtonClickedEvent OnClickedEvent)
     {
+        TutorialWebsiteButton.OnClicked = OnClickedEvent;
     }
 
-    UFUNCTION()
-    private void Browser()
+    void BindBrowser(FOnButtonClickedEvent OnClickedEvent)
     {
+        BrowserButton.OnClicked = OnClickedEvent;
     }
 
-    UFUNCTION()
-    private void SpecialContent()
+    void BindSpecialContent(FOnButtonClickedEvent OnClickedEvent)
     {
+        SpecialContentButton.OnClicked = OnClickedEvent;
     }
 
-    UFUNCTION()
-    private void QuitGame()
+    void BindQuitGame(FOnButtonClickedEvent OnClickedEvent)
     {
+        QuitGameButton.OnClicked = OnClickedEvent;
     }
 };
