@@ -10,6 +10,14 @@ class ATowers : ARuleOfTheCharacter
     UChaosDestructionListener DestructibleMeshBuilding;
 
     UFUNCTION(BlueprintOverride)
+    void ConstructionScript()
+    {
+        Super::ConstructionScript();
+        ParticleMesh.AttachToComponent(RootComponent, AttachmentRule = EAttachmentRule::KeepRelative);
+        StaticMeshBuilding.AttachToComponent(RootComponent, AttachmentRule = EAttachmentRule::KeepRelative);
+    }
+
+    UFUNCTION(BlueprintOverride)
     protected void AnyDamage(float Damage, const UDamageType DamageType, AController InstigatedBy, AActor DamageCauser)
     {
         Super::AnyDamage(Damage, DamageType, InstigatedBy, DamageCauser);

@@ -15,6 +15,12 @@ class ARuleOfTheCharacter : ACharacter
     default TraceShowCharacterInformation.SetBoxExtent(FVector(38., 38., 100.));
 
     UFUNCTION(BlueprintOverride)
+    void ConstructionScript()
+    {
+        OpenFirePoint.AttachToComponent(Mesh, n"OpenFire", EAttachmentRule::KeepRelative);
+    }
+
+    UFUNCTION(BlueprintOverride)
     void BeginPlay()
     {
     }

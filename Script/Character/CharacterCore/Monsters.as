@@ -4,13 +4,11 @@ class AMonsters : ARuleOfTheCharacter
     void BeginPlay()
     {
         Super::BeginPlay();
-        
     }
 
     UFUNCTION(BlueprintOverride)
     void Tick(float DeltaSeconds)
     {
         Super::Tick(DeltaSeconds);
-        
     }
 };
