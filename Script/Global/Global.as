@@ -6,6 +6,16 @@ namespace Global
         return Gameplay::GetPlayerController(0);
     }
 
+    ATowerDefencePlayerController GetDefencePlayerController()
+    {
+        return Cast<ATowerDefencePlayerController>(GetDefaultPlayerController());
+    }
+
+    ATowerDefenceGameState GetDefenceGameState()
+    {
+        return Cast<ATowerDefenceGameState>(Gameplay::GetGameState());
+    }
+
     UWidget CreateAssistWidget(UClass AssistClass, USizeBox WidgetArray)
     {
         UWidget UserObjectElement = nullptr;
@@ -47,4 +57,6 @@ namespace Global
 
         return UserObjectElement;
     }
+
+
 } // namespace Global
