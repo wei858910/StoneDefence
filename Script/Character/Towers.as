@@ -18,8 +18,10 @@ class ATowers : ARuleOfTheCharacter
     void ConstructionScript()
     {
         Super::ConstructionScript();
+        
         ParticleMesh.AttachToComponent(RootComponent, AttachmentRule = EAttachmentRule::KeepRelative);
         StaticMeshBuilding.AttachToComponent(RootComponent, AttachmentRule = EAttachmentRule::KeepRelative);
+        AIControllerClass = ATowersAICotnroller;
     }
 
     UFUNCTION(BlueprintOverride)

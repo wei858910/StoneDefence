@@ -4,6 +4,14 @@ class AMonsters : ARuleOfTheCharacter
     default Mesh.SetCollisionProfileName(n"NoCollision");
 
     UFUNCTION(BlueprintOverride)
+    void ConstructionScript()
+    {
+        Super::ConstructionScript();
+        
+        AIControllerClass = AMonsterAIController;
+    }
+
+    UFUNCTION(BlueprintOverride)
     void BeginPlay()
     {
         Super::BeginPlay();
