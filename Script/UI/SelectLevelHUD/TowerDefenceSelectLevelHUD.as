@@ -17,7 +17,7 @@ class ATowerDefenceSelectLevelHUD : AHUD
     {
         if (IsValid(SelectLevelMainClass))
         {
-            auto PC = Global::GetDefaultPlayerController();
+            auto PC = Utils::GetDefaultPlayerController();
             if (IsValid(PC))
             {
                 SelectLevelMain = Cast<UUISelectLevelMain>(WidgetBlueprint::CreateWidget(SelectLevelMainClass, PC));

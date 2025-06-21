@@ -17,7 +17,7 @@ class UUIInventory : UUIRuleOfTheWidget
 
     void LayoutInventorySlot(int32 ColumnNumber, int32 RowNumber)
     {
-        auto PC = Global::GetDefaultPlayerController();
+        auto PC = Utils::GetDefaultPlayerController();
         if (PC == nullptr)
             return;
 

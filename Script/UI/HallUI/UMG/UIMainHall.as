@@ -80,19 +80,19 @@ class UUIMainHall : UUUIRuleOfTheWidgetBase
     UFUNCTION()
     private void History()
     {
-        Global::CreateAssistWidget(ArchivesSystemClass, BoxList);
+        Utils::CreateAssistWidget(ArchivesSystemClass, BoxList);
     }
 
     UFUNCTION()
     private void GameSettings()
     {
-        Global::CreateAssistWidget(GameSettingsSystemClass, BoxList);
+        Utils::CreateAssistWidget(GameSettingsSystemClass, BoxList);
     }
 
     UFUNCTION()
     private void TutorialWebsite()
     {
-        Global::CreateAssistWidget(TutorialSystemClass, BoxList);
+        Utils::CreateAssistWidget(TutorialSystemClass, BoxList);
     }
 
     UFUNCTION()

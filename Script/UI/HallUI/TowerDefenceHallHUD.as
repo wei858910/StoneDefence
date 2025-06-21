@@ -14,7 +14,7 @@ class ATowerDefenceHallHUD : AHUD
     UFUNCTION(BlueprintOverride)
     void BeginPlay()
     {
-        auto PC = Global::GetDefaultPlayerController();
+        auto PC = Utils::GetDefaultPlayerController();
         if (PC != nullptr)
         {
             MainHall = Cast<UUIMainHall>(WidgetBlueprint::CreateWidget(MainHallClass, PC));

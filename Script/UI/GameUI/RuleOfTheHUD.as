@@ -15,7 +15,7 @@ class ARuleOfTheHUD : AHUD
     {
         if (IsValid(MainScreenClass))
         {
-            auto PC = Global::GetDefaultPlayerController();
+            auto PC = Utils::GetDefaultPlayerController();
             if (IsValid(PC))
             {
                 MainScreen = Cast<UUIMainScreen>(WidgetBlueprint::CreateWidget(MainScreenClass, PC));
