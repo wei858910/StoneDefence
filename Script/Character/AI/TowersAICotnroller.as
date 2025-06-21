@@ -1,7 +1,6 @@
-class ATowersAICotnroller : ARuleOfTheAIControllerBase
+class ATowersAICotnroller : ARuleOfTheAIController
 {
-    UFUNCTION(BlueprintOverride)
-    AActor FindTarget()
+    AActor FindTarget() override
     {
         return nullptr;
     }

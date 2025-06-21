@@ -42,25 +42,25 @@ class ARuleOfTheCharacter : ACharacter
     }
 
     UFUNCTION()
-    protected bool IsDeath()
+    bool IsDeath()
     {
         return false;
     }
 
     UFUNCTION()
-    protected float GetHealth()
+    float GetHealth()
     {
         return 0.;
     }
 
     UFUNCTION()
-    protected float GetMaxHealth()
+    float GetMaxHealth()
     {
         return 0.;
     }
 
     UFUNCTION()
-    protected bool IsTeam()
+    bool IsTeam()
     {
         return false;
     }
@@ -73,12 +73,6 @@ class ARuleOfTheCharacter : ACharacter
     UArrowComponent GetFirePoint() const
     {
         return OpenFirePoint;
-    }
-
-    UFUNCTION(BlueprintPure, Category = "Towers|Attribute")
-    bool IsActive()
-    {
-        return !IsDeath();
     }
 
     EGameCharacterType GetType()

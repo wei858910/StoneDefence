@@ -1,4 +1,4 @@
-class AMonsterAIController : ARuleOfTheAIControllerBase
+class AMonsterAIController : ARuleOfTheAIController
 {
     UPROPERTY()
     UBehaviorTree BT;
@@ -49,8 +49,7 @@ class AMonsterAIController : ARuleOfTheAIControllerBase
         return nullptr;
     }
 
-    UFUNCTION(BlueprintOverride)
-    AActor FindTarget()
+    AActor FindTarget() override
     {
         TArray<ATowers> TargetMainTowersArray;
         TArray<ATowers> TargetTowersArray;

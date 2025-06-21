@@ -26,7 +26,7 @@ class URuleOfTheAnimInstance : UAnimInstance
         if (IsValid(AnimOwner))
         {
             TargetRotator = AnimOwner.TowersRotator;
-            bIsDeath = AnimOwner.IsActive();
+            bIsDeath = AnimOwner.IsDeath();
             Speed = AnimOwner.GetVelocity().Size();
             bIsAttack = AnimOwner.bAttack;
         }
