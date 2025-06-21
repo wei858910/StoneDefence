@@ -27,4 +27,9 @@ class ATowers : ARuleOfTheCharacter
     {
         Super::AnyDamage(Damage, DamageType, InstigatedBy, DamageCauser);
     }
+
+    EGameCharacterType GetType() override
+    {
+        return EGameCharacterType::TOWER;
+    }
 };

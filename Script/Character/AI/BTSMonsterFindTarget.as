@@ -6,6 +6,9 @@ class UBTSMonsterFindTarget : UBTSMonsterFindTargetBase
     UPROPERTY(Category = "BlackBoard")
     FBlackboardKeySelector BlackBoardKeyDistance;
 
+    UPROPERTY(Category = "BlackBoard")
+    FBlackboardKeySelector BlackBoardKeyTargetLocation;
+
     private TWeakObjectPtr<ARuleOfTheCharacter> Target;
 
     UFUNCTION(BlueprintOverride)
@@ -20,7 +23,7 @@ class UBTSMonsterFindTarget : UBTSMonsterFindTargetBase
                 if (IsValid(MyBlackBoard))
                 {
                     ARuleOfTheCharacter NewTarget = Cast<ARuleOfTheCharacter>(MonsterAIController.FindTarget());
-                    
+
                     // 获取目标
                     if (IsValid(NewTarget))
                     {
@@ -38,27 +41,30 @@ class UBTSMonsterFindTarget : UBTSMonsterFindTargetBase
                             if (Target.Get().IsActive())
                             {
                                 MyBlackBoard.SetValueAsObject(n"BlackBoardKeyTarget", Target.Get());
+                                MyBlackBoard.SetValueAsVector(n"BlackBoardKeyTargetLocation", Target.Get().GetActorLocation());
                             }
                             else
                             {
                                 MyBlackBoard.SetValueAsObject(n"BlackBoardKeyTarget", nullptr);
+                                MyBlackBoard.SetValueAsVector(n"BlackBoardKeyTargetLocation", FVector::ZeroVector);
                             }
                         }
                         else
                         {
                             MyBlackBoard.SetValueAsObject(n"BlackBoardKeyTarget", nullptr);
+                            MyBlackBoard.SetValueAsVector(n"BlackBoardKeyTargetLocation", FVector::ZeroVector);
                         }
                     }
 
                     // 获取距离
-                    if(Target.IsValid())
+                    if (Target.IsValid())
                     {
                         FVector MyLocation = MonsterAIController.GetControlledPawn().GetActorLocation();
                         FVector TargetDistance = MyLocation - Target.Get().GetActorLocation();
-                        if(TargetDistance.Size() > 2200.)
+                        if (TargetDistance.Size() > 2200.)
                         {
                             AMonsters MonsterAI = Cast<AMonsters>(MonsterAIController.GetControlledPawn());
-                            if(IsValid(MonsterAI))
+                            if (IsValid(MonsterAI))
                             {
                                 MonsterAI.bAttack = false;
                             }

@@ -78,6 +78,11 @@ class ARuleOfTheCharacter : ACharacter
     UFUNCTION(BlueprintPure, Category = "Towers|Attribute")
     bool IsActive()
     {
-        return IsDeath();
+        return !IsDeath();
+    }
+
+    EGameCharacterType GetType()
+    {
+        return EGameCharacterType::MAX;
     }
 };

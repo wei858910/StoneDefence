@@ -14,4 +14,9 @@ class AMonsters : ARuleOfTheCharacter
     {
         Super::Tick(DeltaSeconds);
     }
+
+    EGameCharacterType GetType() override
+    {
+        return EGameCharacterType::MONSTER;
+    }
 };
