@@ -14,6 +14,12 @@ class ARuleOfTheCharacter : ACharacter
     default TraceShowCharacterInformation.SetCollisionProfileName(n"Scanning");
     default TraceShowCharacterInformation.SetBoxExtent(FVector(38., 38., 100.));
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BaseAttribute")
+    FRotator TowersRotator;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AnimAttribute")
+    bool bAttack = false;
+
     UFUNCTION(BlueprintOverride)
     void ConstructionScript()
     {
@@ -67,5 +73,11 @@ class ARuleOfTheCharacter : ACharacter
     UArrowComponent GetFirePoint() const
     {
         return OpenFirePoint;
+    }
+
+    UFUNCTION(BlueprintPure, Category = "Towers|Attribute")
+    bool IsActive()
+    {
+        return IsDeath();
     }
 };
