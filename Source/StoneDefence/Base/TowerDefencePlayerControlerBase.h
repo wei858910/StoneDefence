@@ -17,7 +17,7 @@ class STONEDEFENCE_API ATowerDefencePlayerControllerBase : public APlayerControl
 
 public:
 	ATowerDefencePlayerControllerBase();
-	
+
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 

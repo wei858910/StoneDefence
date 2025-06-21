@@ -15,7 +15,8 @@ public class StoneDefence : ModuleRules
 			"Engine",
 			"InputCore",
 			"EnhancedInput",
-			"UMG"
+			"UMG",
+			"AIModule"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]
