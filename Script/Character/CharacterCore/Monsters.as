@@ -1,5 +1,8 @@
 class AMonsters : ARuleOfTheCharacter
 {
+    default CapsuleComponent.SetCollisionProfileName(n"MonsterProfile");
+    default Mesh.SetCollisionProfileName(n"NoCollision");
+
     UFUNCTION(BlueprintOverride)
     void BeginPlay()
     {

@@ -13,6 +13,7 @@ class ATowerDefenceGameCamera : APawn
     // 摄像机碰撞
     UPROPERTY(DefaultComponent, Attach = CameraBoom, Category = "Camera")
     UBoxComponent MarkBox;
+    default MarkBox.SetCollisionProfileName(n"ControlPawnProfile");
 
     float32 MaxArmLength = 800.f;
     float32 MinArmLength = 400.f;
