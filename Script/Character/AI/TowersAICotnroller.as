@@ -1,4 +1,4 @@
-class ATowersAICotnroller : ARuleOfTheAIController
+class ATowersAICotnroller : AAIControllerBase
 {
     protected float Heartbeat = 0.0;
 
@@ -77,7 +77,7 @@ class ATowersAICotnroller : ARuleOfTheAIController
         }
     }
 
-    void AttackTarget(ARuleOfTheCharacter Target) override
+    void AttackTarget(ACharacterBase Target) override
     {
         ATowers Tower = Cast<ATowers>(ControlledPawn);
         if (MonstersArray.Num() > 0)

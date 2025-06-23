@@ -58,7 +58,7 @@ namespace Utils
         return UserObjectElement;
     }
 
-    ARuleOfTheCharacter GetNearestTarget(const TArray<ARuleOfTheCharacter>& TargetArray, const FVector& Location)
+    ACharacterBase GetNearestTarget(const TArray<ACharacterBase>& TargetArray, const FVector& Location)
     {
         if (TargetArray.Num() > 0)
         {
@@ -67,7 +67,7 @@ namespace Utils
 
             for (int32 i = 0; i < TargetArray.Num(); i++)
             {
-                ARuleOfTheCharacter Target = TargetArray[i];
+                ACharacterBase Target = TargetArray[i];
                 if (IsValid(Target))
                 {
                     FVector TargetLocation = Target.GetActorLocation();

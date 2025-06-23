@@ -1,4 +1,4 @@
-class ARuleOfTheCharacter : ACharacter
+class ACharacterBase : ACharacter
 {
     UPROPERTY(DefaultComponent, VisibleAnywhere, BlueprintReadOnly, Category = "BaseAttribute")
     USceneComponent HomingPoint;

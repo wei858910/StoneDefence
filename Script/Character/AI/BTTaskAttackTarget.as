@@ -9,10 +9,10 @@ class UBTTaskAttackTarget : UBTTask_BlueprintBase
             UBlackboardComponent MonsterBlackBoard = AIHelper::GetBlackboard(ControlledPawn);
             if (IsValid(MonsterBlackBoard))
             {
-                ARuleOfTheCharacter Monster = Cast<ARuleOfTheCharacter>(ControlledPawn);
+                ACharacterBase Monster = Cast<ACharacterBase>(ControlledPawn);
                 if (IsValid(Monster))
                 {
-                    ARuleOfTheCharacter TowerObject = Cast<ARuleOfTheCharacter>(MonsterBlackBoard.GetValueAsObject(n"Target"));
+                    ACharacterBase TowerObject = Cast<ACharacterBase>(MonsterBlackBoard.GetValueAsObject(n"Target"));
                     if (IsValid(TowerObject))
                     {
 

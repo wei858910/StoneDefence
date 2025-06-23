@@ -1,4 +1,4 @@
-class ATowers : ARuleOfTheCharacter
+class ATowers : ACharacterBase
 {
     UPROPERTY(DefaultComponent, VisibleAnywhere, BlueprintReadOnly, Category = "BaseAttribute")
     UParticleSystemComponent ParticleMesh;

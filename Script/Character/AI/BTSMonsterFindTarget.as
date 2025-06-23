@@ -9,7 +9,7 @@ class UBTSMonsterFindTarget : UBTService_BlueprintBase
     UPROPERTY(Category = "BlackBoard")
     FBlackboardKeySelector BlackBoardKeyTargetLocation;
 
-    private TWeakObjectPtr<ARuleOfTheCharacter> Target;
+    private TWeakObjectPtr<ACharacterBase> Target;
 
     float Heartbeat = 0.0;
 
@@ -26,13 +26,13 @@ class UBTSMonsterFindTarget : UBTService_BlueprintBase
 
     void GetTargetInfo(AAIController OwnerController, APawn ControlledPawn)
     {
-        ARuleOfTheAIController AIController = Cast<ARuleOfTheAIController>(OwnerController);
+        AAIControllerBase AIController = Cast<AAIControllerBase>(OwnerController);
         if (IsValid(AIController))
         {
             UBlackboardComponent MyBlackBoard = AIHelper::GetBlackboard(ControlledPawn);
             if (IsValid(MyBlackBoard))
             {
-                ARuleOfTheCharacter NewTarget = Cast<ARuleOfTheCharacter>(AIController.FindTarget());
+                ACharacterBase NewTarget = Cast<ACharacterBase>(AIController.FindTarget());
 
                 // 获取目标
                 if (IsValid(NewTarget))

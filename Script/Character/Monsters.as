@@ -1,4 +1,4 @@
-class AMonsters : ARuleOfTheCharacter
+class AMonsters : ACharacterBase
 {
     default CapsuleComponent.SetCollisionProfileName(n"MonsterProfile");
     default Mesh.SetCollisionProfileName(n"NoCollision");

@@ -1,6 +1,6 @@
 class URuleOfTheAnimInstance : UAnimInstance
 {
-    ARuleOfTheCharacter AnimOwner;
+    ACharacterBase AnimOwner;
 
     UPROPERTY(BlueprintReadOnly, Category = "AnimAttribute")
     FRotator TargetRotator = FRotator::ZeroRotator;
@@ -17,7 +17,7 @@ class URuleOfTheAnimInstance : UAnimInstance
     UFUNCTION(BlueprintOverride)
     void BlueprintInitializeAnimation()
     {
-        AnimOwner = Cast<ARuleOfTheCharacter>(TryGetPawnOwner());
+        AnimOwner = Cast<ACharacterBase>(TryGetPawnOwner());
     }
 
     UFUNCTION(BlueprintOverride)

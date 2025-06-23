@@ -1,4 +1,4 @@
-class AMonsterAIController : ARuleOfTheAIController
+class AMonsterAIController : AAIControllerBase
 {
     UPROPERTY()
     UBehaviorTree BT;
@@ -51,7 +51,7 @@ class AMonsterAIController : ARuleOfTheAIController
         return NormalTower;
     }
 
-    void AttackTarget(ARuleOfTheCharacter Target) override
+    void AttackTarget(ACharacterBase Target) override
     {
         
     }

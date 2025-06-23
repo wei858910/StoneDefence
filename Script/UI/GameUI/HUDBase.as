@@ -1,4 +1,4 @@
-class ARuleOfTheHUD : AHUD
+class AHUDBase : AHUD
 {
     private TSubclassOf<UUIMainScreen> MainScreenClass;
 
