@@ -4,4 +4,8 @@ class ARuleOfTheAIController : AAIController
     {
         return nullptr;
     }
+
+    void AttackTarget(ARuleOfTheCharacter Target)
+    {
+    }
 };

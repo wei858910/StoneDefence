@@ -30,6 +30,7 @@ class ATowersAICotnroller : ARuleOfTheAIController
             if (TargetMonster.IsValid())
             {
                 Tower.TowersRotator = FRotator::MakeFromX(TargetMonster.Get().GetActorLocation() - ControlledPawn.GetActorLocation());
+                AttackTarget(TargetMonster.Get());
             }
         }
     }
@@ -73,6 +74,19 @@ class ATowersAICotnroller : ARuleOfTheAIController
                     MonstersArray.Add(Monster);
                 }
             }
+        }
+    }
+
+    void AttackTarget(ARuleOfTheCharacter Target) override
+    {
+        ATowers Tower = Cast<ATowers>(ControlledPawn);
+        if (MonstersArray.Num() > 0)
+        {
+            Tower.bAttack = true;
+        }
+        else
+        {
+            Tower.bAttack = false;
         }
     }
 };

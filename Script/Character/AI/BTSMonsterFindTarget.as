@@ -50,8 +50,12 @@ class UBTSMonsterFindTarget : UBTService_BlueprintBase
                     {
                         if (!Target.Get().IsDeath())
                         {
+                            FVector CurrentLocation = FVector::ZeroVector;
+                            FVector TargetDirection = (ControlledPawn.GetActorLocation() - Target.Get().GetActorLocation());
+                            TargetDirection.Normalize();
+                            FVector TargetLocation = Target.Get().GetActorLocation() + TargetDirection * 800.0;
+                            
                             MyBlackBoard.SetValueAsObject(BlackBoardKeyTarget.SelectedKeyName, Target.Get());
-                            FVector TargetLocation = Target.Get().GetActorLocation();
                             MyBlackBoard.SetValueAsVector(BlackBoardKeyTargetLocation.SelectedKeyName, TargetLocation);
                         }
                         else

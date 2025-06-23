@@ -50,4 +50,9 @@ class AMonsterAIController : ARuleOfTheAIController
 
         return NormalTower;
     }
+
+    void AttackTarget(ARuleOfTheCharacter Target) override
+    {
+        
+    }
 };
