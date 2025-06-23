@@ -11,17 +11,28 @@ class UBTSMonsterFindTarget : UBTService_BlueprintBase
 
     private TWeakObjectPtr<ARuleOfTheCharacter> Target;
 
+    float Heartbeat = 0.0;
+
     UFUNCTION(BlueprintOverride)
     void TickAI(AAIController OwnerController, APawn ControlledPawn, float DeltaSeconds)
     {
-        AMonsterAIController MonsterAIController = Cast<AMonsterAIController>(OwnerController);
-        if (IsValid(MonsterAIController))
+        Heartbeat += DeltaSeconds;
+        if (Heartbeat > 0.5)
         {
+            Heartbeat = 0.0;
+            GetTargetInfo(OwnerController, ControlledPawn);
+        }
+    }
 
+    void GetTargetInfo(AAIController OwnerController, APawn ControlledPawn)
+    {
+        ARuleOfTheAIController AIController = Cast<ARuleOfTheAIController>(OwnerController);
+        if (IsValid(AIController))
+        {
             UBlackboardComponent MyBlackBoard = AIHelper::GetBlackboard(ControlledPawn);
             if (IsValid(MyBlackBoard))
             {
-                ARuleOfTheCharacter NewTarget = Cast<ARuleOfTheCharacter>(MonsterAIController.FindTarget());
+                ARuleOfTheCharacter NewTarget = Cast<ARuleOfTheCharacter>(AIController.FindTarget());
 
                 // 获取目标
                 if (IsValid(NewTarget))
@@ -41,7 +52,6 @@ class UBTSMonsterFindTarget : UBTService_BlueprintBase
                         {
                             MyBlackBoard.SetValueAsObject(BlackBoardKeyTarget.SelectedKeyName, Target.Get());
                             FVector TargetLocation = Target.Get().GetActorLocation();
-                            Print(TargetLocation.ToColorString(), DeltaSeconds);
                             MyBlackBoard.SetValueAsVector(BlackBoardKeyTargetLocation.SelectedKeyName, TargetLocation);
                         }
                         else

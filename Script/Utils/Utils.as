@@ -58,5 +58,33 @@ namespace Utils
         return UserObjectElement;
     }
 
+    ARuleOfTheCharacter GetNearestTarget(const TArray<ARuleOfTheCharacter>& TargetArray, const FVector& Location)
+    {
+        if (TargetArray.Num() > 0)
+        {
+            float TargetDistance = MAX_dbl;
+            int32 TargetIndex = -1;
 
-} // namespace Global
+            for (int32 i = 0; i < TargetArray.Num(); i++)
+            {
+                ARuleOfTheCharacter Target = TargetArray[i];
+                if (IsValid(Target))
+                {
+                    FVector TargetLocation = Target.GetActorLocation();
+                    float   NewTargetDistance = (TargetLocation - Location).Size();
+                    if (NewTargetDistance < TargetDistance)
+                    {
+                        TargetDistance = NewTargetDistance;
+                        TargetIndex = i;
+                    }
+                }
+            }
+            if (TargetIndex != MAX_dbl)
+            {
+                return TargetArray[TargetIndex];
+            }
+        }
+        return nullptr;
+    }
+
+} // namespace Utils
