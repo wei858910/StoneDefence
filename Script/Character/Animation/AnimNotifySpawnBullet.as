@@ -13,6 +13,10 @@ class UAnimNotifySpawnBullet : UAnimNotify
             if (IsValid(FirePoint))
             {
                 ABulletBase Bullet = Cast<ABulletBase>(SpawnActor(BulletClass, FirePoint.GetWorldLocation(), FirePoint.GetWorldRotation()));
+                if (IsValid(Bullet))
+                {
+                    Bullet.Instigator = Cast<APawn>(AnimOwner);
+                }
             }
         }
 
