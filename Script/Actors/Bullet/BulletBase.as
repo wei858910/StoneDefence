@@ -55,9 +55,10 @@ class ABulletBase : AActor
                 ProjectileMovement.bRotationFollowsVelocity = true;
                 break;
             }
-
-            case EBulletType::BulletRange:
+            case EBulletType::BulletRangeLine:
                 ProjectileMovement.StopMovementImmediately();
+                break;
+            case EBulletType::BulletRange:
                 break;
             case EBulletType::BulletChain:
                 // 立即停止子弹的运动
@@ -104,19 +105,49 @@ class ABulletBase : AActor
                 {
                     if (!OtherCharacter.IsDeath())
                     {
-                        Gameplay::SpawnEmitterAtLocation(DamageParticle, SweepResult.Location);
-                        Gameplay::PlaySound2D(Explosion);
-                        Gameplay::ApplyDamage(OtherCharacter, 100.f, InstigatorCharacter.Controller, InstigatorCharacter, UDamageType);
-                    }
+                        switch (BulletType)
+                        {
+                            case EBulletType::BulletLine:
+                            case EBulletType::BulletTrackLine:
+                                Gameplay::SpawnEmitterAtLocation(DamageParticle, SweepResult.Location);
+                                Gameplay::PlaySound2D(Explosion);
+                                Gameplay::ApplyDamage(OtherCharacter, 100.f, InstigatorCharacter.Controller, InstigatorCharacter, UDamageType);
+                                DestroyActor();
+                                break;
+                            case EBulletType::BulletRange:
+                            {
+                                TArray<ACharacterBase> AllActorsArr;
+                                TArray<ACharacterBase> IgnorActorsArr;
+                                TArray<ACharacterBase> TargetActorsArr;
+                                GetAllActorsOfClass(ACharacterBase, AllActorsArr);
 
-                    switch (BulletType)
-                    {
-                        case EBulletType::BulletLine:
-                        case EBulletType::BulletTrackLine:
-                            DestroyActor();
-                            break;
-                        default:
-                            break;
+                                FVector CurrentLocation = GetActorLocation();
+
+                                for (auto ItemActor : AllActorsArr)
+                                {
+                                    FVector ItemLocation = ItemActor.GetActorLocation();
+                                    FVector DistanceVector = ItemLocation - CurrentLocation;
+                                    if (DistanceVector.Size() <= 1400.f)
+                                    {
+                                        if (ItemActor.IsTeam() == InstigatorCharacter.IsTeam())
+                                        {
+                                            IgnorActorsArr.Add(ItemActor);
+                                        }
+                                        else
+                                        {
+                                            // 生成伤害特效
+                                            Gameplay::SpawnEmitterAtLocation(DamageParticle, ItemLocation);
+                                            TargetActorsArr.Add(ItemActor);
+                                        }
+                                    }
+                                }
+                                Gameplay::ApplyRadialDamageWithFalloff(100.f, 10.f, InstigatorCharacter.GetActorLocation(), 400.f, 1000.f, 1.f, UDamageType, IgnorActorsArr, Instigator);
+                                DestroyActor();
+                                break;
+                            }
+                            default:
+                                break;
+                        }
                     }
                 }
             }
