@@ -26,4 +26,9 @@ class AMonsters : ACharacterBase
     {
         return EGameCharacterType::MONSTER;
     }
+
+    bool IsTeam() override
+    {
+        return false;
+    }
 };

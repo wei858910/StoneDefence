@@ -35,4 +35,9 @@ class ATowers : ACharacterBase
     {
         return EGameCharacterType::TOWER;
     }
+
+    bool IsTeam() override
+    {
+        return true;
+    }
 };

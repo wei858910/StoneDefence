@@ -5,9 +5,11 @@ class ABulletBase : AActor
 
     UPROPERTY(DefaultComponent)
     USphereComponent BoxDamage;
+    default BoxDamage.SetCollisionProfileName(n"BulletProfile");
 
     UPROPERTY(DefaultComponent, Attach = BoxDamage)
     UStaticMeshComponent BulletMesh;
+    default BulletMesh.SetCollisionProfileName(n"NoCollision");
 
     UPROPERTY(DefaultComponent)
     UProjectileMovementComponent ProjectileMovement;
@@ -27,6 +29,9 @@ class ABulletBase : AActor
     UPROPERTY(Category = "Bullet")
     UParticleSystem OpenFireParticle;
 
+    UPROPERTY(Category = "Bullet")
+    USoundCue Explosion;
+
     default InitialLifeSpan = 4.f;
 
     UFUNCTION(BlueprintOverride)
@@ -35,10 +40,13 @@ class ABulletBase : AActor
         switch (BulletType)
         {
             case EBulletType::BulletDirectLine:
+                Gameplay::SpawnEmitterAtLocation(OpenFireParticle, GetActorLocation());
                 break;
             case EBulletType::BulletLine:
+                Gameplay::SpawnEmitterAtLocation(OpenFireParticle, GetActorLocation());
                 break;
             case EBulletType::BulletTrackLine:
+                Gameplay::SpawnEmitterAtLocation(OpenFireParticle, GetActorLocation());
                 // 开启此标志后，子弹会自动追踪目标
                 ProjectileMovement.bIsHomingProjectile = true;
                 // 设置为 true 时，子弹的旋转会跟随其速度方向，
@@ -75,10 +83,21 @@ class ABulletBase : AActor
                     if (!OtherCharacter.IsDeath())
                     {
                         Gameplay::SpawnEmitterAtLocation(DamageParticle, SweepResult.Location);
+                        Gameplay::PlaySound2D(Explosion);
                         Gameplay::ApplyDamage(OtherCharacter, 100.f, InstigatorCharacter.Controller, InstigatorCharacter, UDamageType);
                     }
                 }
             }
+        }
+        switch (BulletType)
+        {
+            case EBulletType::BulletLine:
+            case EBulletType::BulletTrackLine:
+                DestroyActor();
+                break;
+
+            default:
+                break;
         }
     }
 };
