@@ -14,6 +14,8 @@ class ATowers : ACharacterBase
     default CapsuleComponent.SetCollisionProfileName(n"TowersProfile");
     default Mesh.SetCollisionProfileName(n"NoCollision");
 
+    default AIControllerClass = ATowersAICotnroller;
+
     UFUNCTION(BlueprintOverride)
     void ConstructionScript()
     {
@@ -21,7 +23,6 @@ class ATowers : ACharacterBase
         
         ParticleMesh.AttachToComponent(RootComponent, AttachmentRule = EAttachmentRule::KeepRelative);
         StaticMeshBuilding.AttachToComponent(RootComponent, AttachmentRule = EAttachmentRule::KeepRelative);
-        AIControllerClass = ATowersAICotnroller;
     }
 
     UFUNCTION(BlueprintOverride)

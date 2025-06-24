@@ -2,12 +2,7 @@ class AMonsterAIController : AAIControllerBase
 {
     UPROPERTY()
     UBehaviorTree BT;
-
-    UFUNCTION(BlueprintOverride)
-    void ConstructionScript()
-    {
-        BT = Cast<UBehaviorTree>(FindObject(nullptr, "/Game/Character/Monster/AI/BT_Monster.BT_Monster"));
-    }
+    default BT = Cast<UBehaviorTree>(FindObject(nullptr, "/Game/Character/Monster/AI/BT_Monster.BT_Monster"));
 
     UFUNCTION(BlueprintOverride)
     void BeginPlay()

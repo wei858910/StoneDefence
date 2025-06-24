@@ -2,13 +2,12 @@ class AMonsters : ACharacterBase
 {
     default CapsuleComponent.SetCollisionProfileName(n"MonsterProfile");
     default Mesh.SetCollisionProfileName(n"NoCollision");
+    default AIControllerClass = AMonsterAIController;
 
     UFUNCTION(BlueprintOverride)
     void ConstructionScript()
     {
         Super::ConstructionScript();
-        
-        AIControllerClass = AMonsterAIController;
     }
 
     UFUNCTION(BlueprintOverride)
