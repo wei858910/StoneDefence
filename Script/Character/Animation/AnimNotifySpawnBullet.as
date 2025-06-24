@@ -3,20 +3,21 @@ class UAnimNotifySpawnBullet : UAnimNotify
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TSubclassOf<ABulletBase> BulletClass;
 
+    UPROPERTY()
+    FName BoneName;
+
     UFUNCTION(BlueprintOverride)
     bool Notify(USkeletalMeshComponent MeshComp, UAnimSequenceBase Animation, FAnimNotifyEventReference EventReference) const
     {
         ACharacterBase AnimOwner = Cast<ACharacterBase>(MeshComp.GetOwner());
         if (IsValid(AnimOwner))
         {
-            auto FirePoint = AnimOwner.GetFirePoint();
-            if (IsValid(FirePoint))
+            FTransform BoneTransform = MeshComp.GetBoneTransform(BoneName);
+
+            ABulletBase Bullet = Cast<ABulletBase>(SpawnActor(BulletClass, BoneTransform.Location, BoneTransform.Rotation.Rotator()));
+            if (IsValid(Bullet))
             {
-                ABulletBase Bullet = Cast<ABulletBase>(SpawnActor(BulletClass, FirePoint.GetWorldLocation(), FirePoint.GetWorldRotation()));
-                if (IsValid(Bullet))
-                {
-                    Bullet.Instigator = Cast<APawn>(AnimOwner);
-                }
+                Bullet.Instigator = Cast<APawn>(AnimOwner);
             }
         }
 

@@ -1,11 +1,13 @@
 class AAIControllerBase : AAIController
 {
+    TWeakObjectPtr<ACharacterBase> Target;
+
     AActor FindTarget()
     {
         return nullptr;
     }
 
-    void AttackTarget(ACharacterBase Target)
+    void AttackTarget(ACharacterBase TargetCharacter)
     {
     }
 };

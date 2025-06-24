@@ -36,13 +36,13 @@ class ATowerDefencePlayerController : ATowerDefencePlayerControllerBase
     private void OnMouseWheelMove(FInputActionValue ActionValue, float32 ElapsedTime, float32 TriggeredTime, const UInputAction SourceAction)
     {
         float WheelValue = ActionValue.GetAxis1D();
-        Print(f"{WheelValue}");
+        // Print(f"{WheelValue}");
 
         ATowerDefenceGameCamera GameCamera = Cast<ATowerDefenceGameCamera>(GetControlledPawn());
         if (GameCamera == nullptr)
             return;
 
-        float32 ZoomSpeed = 20.f;
+        float32 ZoomSpeed = 60.f;
 
         if (WheelValue > 0)
         {

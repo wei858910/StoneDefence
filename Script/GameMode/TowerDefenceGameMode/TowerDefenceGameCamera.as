@@ -16,7 +16,7 @@ class ATowerDefenceGameCamera : APawn
     default MarkBox.SetCollisionProfileName(n"ControlPawnProfile");
 
     float32 MaxArmLength = 800.f;
-    float32 MinArmLength = 400.f;
+    float32 MinArmLength = 200.f;
 
     UFUNCTION(BlueprintOverride)
     void BeginPlay()

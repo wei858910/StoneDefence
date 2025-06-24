@@ -46,6 +46,7 @@ class ABulletBase : AActor
                 Gameplay::SpawnEmitterAtLocation(OpenFireParticle, GetActorLocation());
                 break;
             case EBulletType::BulletTrackLine:
+            {
                 Gameplay::SpawnEmitterAtLocation(OpenFireParticle, GetActorLocation());
                 // 开启此标志后，子弹会自动追踪目标
                 ProjectileMovement.bIsHomingProjectile = true;
@@ -53,6 +54,8 @@ class ABulletBase : AActor
                 // 使得子弹在飞行过程中始终朝向其运动方向，保证视觉效果的合理性
                 ProjectileMovement.bRotationFollowsVelocity = true;
                 break;
+            }
+
             case EBulletType::BulletRange:
                 ProjectileMovement.StopMovementImmediately();
                 break;
@@ -67,6 +70,25 @@ class ABulletBase : AActor
                 break;
         }
         BoxDamage.OnComponentBeginOverlap.AddUFunction(this, n"OnBeginOverlap");
+    }
+
+    UFUNCTION(BlueprintOverride)
+    void Tick(float DeltaSeconds)
+    {
+        if (BulletType == EBulletType::BulletTrackLine)
+        {
+            if (IsValid(Instigator))
+            {
+                AAIControllerBase AIControllerBase = Cast<AAIControllerBase>(Instigator.Controller);
+                if (IsValid(AIControllerBase))
+                {
+                    ACharacterBase TargetCharacter = AIControllerBase.Target.Get();
+                    ProjectileMovement.HomingAccelerationMagnitude = 4000.0;
+                    ProjectileMovement.SetHomingTargetComponent(TargetCharacter.GetHomingPoint());
+                    SetActorTickEnabled(false);
+                }
+            }
+        }
     }
 
     UFUNCTION()
@@ -86,18 +108,18 @@ class ABulletBase : AActor
                         Gameplay::PlaySound2D(Explosion);
                         Gameplay::ApplyDamage(OtherCharacter, 100.f, InstigatorCharacter.Controller, InstigatorCharacter, UDamageType);
                     }
+
+                    switch (BulletType)
+                    {
+                        case EBulletType::BulletLine:
+                        case EBulletType::BulletTrackLine:
+                            DestroyActor();
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
-        }
-        switch (BulletType)
-        {
-            case EBulletType::BulletLine:
-            case EBulletType::BulletTrackLine:
-                DestroyActor();
-                break;
-
-            default:
-                break;
         }
     }
 };

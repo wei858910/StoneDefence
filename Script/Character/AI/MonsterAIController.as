@@ -46,7 +46,7 @@ class AMonsterAIController : AAIControllerBase
         return NormalTower;
     }
 
-    void AttackTarget(ACharacterBase Target) override
+    void AttackTarget(ACharacterBase TargetCharacter) override
     {
         
     }
