@@ -4,8 +4,6 @@ class ATowersAICotnroller : AAIControllerBase
 
     protected TArray<AMonsters> MonstersArray;
 
-    protected TWeakObjectPtr<AMonsters> TargetMonster = nullptr;
-
     UFUNCTION(BlueprintOverride)
     void Tick(float DeltaSeconds)
     {
@@ -22,15 +20,15 @@ class ATowersAICotnroller : AAIControllerBase
 
         if (MonstersArray.Num() > 0)
         {
-            if (!TargetMonster.IsValid())
+            if (!Target.IsValid())
             {
-                TargetMonster = Cast<AMonsters>(FindTarget());
+                Target = Cast<AMonsters>(FindTarget());
             }
 
-            if (TargetMonster.IsValid())
+            if (Target.IsValid())
             {
-                Tower.TowersRotator = FRotator::MakeFromX(TargetMonster.Get().GetActorLocation() - ControlledPawn.GetActorLocation());
-                AttackTarget(TargetMonster.Get());
+                Tower.TowersRotator = FRotator::MakeFromX(Target.Get().GetActorLocation() - ControlledPawn.GetActorLocation());
+                AttackTarget(Target.Get());
             }
         }
     }
@@ -77,7 +75,7 @@ class ATowersAICotnroller : AAIControllerBase
         }
     }
 
-    void AttackTarget(ACharacterBase Target) override
+    void AttackTarget(ACharacterBase TargetCharacter) override
     {
         ATowers Tower = Cast<ATowers>(ControlledPawn);
         if (MonstersArray.Num() > 0)
