@@ -41,28 +41,10 @@ class ABulletBase : AActor
         {
             case EBulletType::BulletDirectLine:
             case EBulletType::BulletLine:
+            {
                 Gameplay::SpawnEmitterAtLocation(OpenFireParticle, GetActorLocation());
                 break;
-            case EBulletType::BulletChain:
-                ProjectileMovement.StopMovementImmediately();
-                // 将碰撞体的碰撞检测功能关闭，
-                BoxDamage.SetCollisionEnabled(ECollisionEnabled::NoCollision);
-                break;
-            default:
-                break;
-        }
-
-        BoxDamage.OnComponentBeginOverlap.AddUFunction(this, n"OnBeginOverlap");
-    }
-
-    UFUNCTION(BlueprintOverride)
-    void Tick(float DeltaSeconds)
-    {
-        if (!IsValid(Instigator))
-            return;
-
-        switch (BulletType)
-        {
+            }
             case EBulletType::BulletTrack:
             {
                 ApplyBulletTrack();
@@ -74,20 +56,28 @@ class ABulletBase : AActor
                 if (IsValid(InstigatorCharacter))
                 {
                     ApplyBulletRange(InstigatorCharacter.GetActorLocation());
-                    SetActorTickEnabled(false);
                 }
                 break;
             }
             case EBulletType::BulletRangeThrow:
             {
                 ApplyBulletRangeThrow();
-                SetActorTickEnabled(false);
-
+                break;
+            }
+            case EBulletType::BulletChain:
+            {
                 break;
             }
             default:
                 break;
         }
+
+        BoxDamage.OnComponentBeginOverlap.AddUFunction(this, n"OnBeginOverlap");
+    }
+
+    UFUNCTION(BlueprintOverride)
+    void Tick(float DeltaSeconds)
+    {
     }
 
     UFUNCTION()
@@ -132,7 +122,6 @@ class ABulletBase : AActor
             ACharacterBase TargetCharacter = InstigatorCharacterController.Target.Get();
             ProjectileMovement.HomingAccelerationMagnitude = 4000.0;
             ProjectileMovement.SetHomingTargetComponent(TargetCharacter.GetHomingPoint());
-            SetActorTickEnabled(false);
         }
     }
 

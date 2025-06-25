@@ -14,10 +14,11 @@ class UAnimNotifySpawnBullet : UAnimNotify
         {
             FTransform BoneTransform = MeshComp.GetBoneTransform(BoneName);
 
-            ABulletBase Bullet = Cast<ABulletBase>(SpawnActor(BulletClass, BoneTransform.Location, BoneTransform.Rotation.Rotator()));
+            ABulletBase Bullet = Cast<ABulletBase>(SpawnActor(BulletClass, BoneTransform.Location, BoneTransform.Rotation.Rotator(), bDeferredSpawn = true));
             if (IsValid(Bullet))
             {
                 Bullet.Instigator = Cast<APawn>(AnimOwner);
+                FinishSpawningActor(Bullet);
             }
         }
 
