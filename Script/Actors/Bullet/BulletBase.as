@@ -11,6 +11,9 @@ class ABulletBase : AActor
     UStaticMeshComponent BulletMesh;
     default BulletMesh.SetCollisionProfileName(n"NoCollision");
 
+    UPROPERTY(DefaultComponent, Attach = BoxDamage)
+    UParticleSystemComponent ChainParticleComp;
+
     UPROPERTY(DefaultComponent)
     UProjectileMovementComponent ProjectileMovement;
     default ProjectileMovement.MaxSpeed = 2000.f;
@@ -66,6 +69,22 @@ class ABulletBase : AActor
             }
             case EBulletType::BulletChain:
             {
+                ProjectileMovement.StopMovementImmediately();
+                // 将碰撞体的碰撞检测功能关闭，
+                BoxDamage.SetCollisionEnabled(ECollisionEnabled::NoCollision);
+                ACharacterBase InstigatorCharacter = Cast<ACharacterBase>(Instigator);
+                if (IsValid(InstigatorCharacter))
+                {
+                    AAIControllerBase InstigatorAIController = Cast<AAIControllerBase>(InstigatorCharacter.Controller);
+                    if (IsValid(InstigatorController))
+                    {
+                        ACharacterBase TargetCharacter = InstigatorAIController.Target.Get();
+                        if (IsValid(TargetCharacter))
+                        {
+                            Gameplay::SpawnEmitterAttached(DamageParticle, TargetCharacter.GetHomingPoint());
+                        }
+                    }
+                }
                 break;
             }
             default:
@@ -78,6 +97,16 @@ class ABulletBase : AActor
     UFUNCTION(BlueprintOverride)
     void Tick(float DeltaSeconds)
     {
+        switch (BulletType)
+        {
+            case EBulletType::BulletChain:
+            {
+                ApplyBulletChain();
+                break;
+            }
+            default:
+                break;
+        }
     }
 
     UFUNCTION()
@@ -116,10 +145,10 @@ class ABulletBase : AActor
 
     private void ApplyBulletTrack()
     {
-        AAIControllerBase InstigatorCharacterController = Cast<AAIControllerBase>(Instigator.Controller);
-        if (IsValid(InstigatorCharacterController))
+        AAIControllerBase InstigatorAIController = Cast<AAIControllerBase>(Instigator.Controller);
+        if (IsValid(InstigatorAIController))
         {
-            ACharacterBase TargetCharacter = InstigatorCharacterController.Target.Get();
+            ACharacterBase TargetCharacter = InstigatorAIController.Target.Get();
             ProjectileMovement.HomingAccelerationMagnitude = 4000.0;
             ProjectileMovement.SetHomingTargetComponent(TargetCharacter.GetHomingPoint());
         }
@@ -166,10 +195,10 @@ class ABulletBase : AActor
         ACharacterBase InstigatorCharacter = Cast<ACharacterBase>(Instigator);
         if (IsValid(InstigatorCharacter))
         {
-            AAIControllerBase InstigatorCharacterController = Cast<AAIControllerBase>(InstigatorCharacter.Controller);
-            if (IsValid(InstigatorController))
+            AAIControllerBase InstigatorAIController = Cast<AAIControllerBase>(InstigatorCharacter.Controller);
+            if (IsValid(InstigatorAIController))
             {
-                ACharacterBase TargetCharacter = InstigatorCharacterController.Target.Get();
+                ACharacterBase TargetCharacter = InstigatorAIController.Target.Get();
                 if (IsValid(TargetCharacter))
                 {
                     ProjectileMovement.ProjectileGravityScale = 1.f;
@@ -184,6 +213,36 @@ class ABulletBase : AActor
                     Rot.Pitch = CosRadian * (180.f / PI);
                     SetActorRotation(Rot);
                     ProjectileMovement.SetVelocityInLocalSpace(FVector(1.0, 0.0, 0.0) * ProjectileMovement.InitialSpeed);
+                }
+            }
+        }
+    }
+
+    private void ApplyBulletChain()
+    {
+        ProjectileMovement.StopMovementImmediately();
+        // 将碰撞体的碰撞检测功能关闭，
+        BoxDamage.SetCollisionEnabled(ECollisionEnabled::NoCollision);
+        ACharacterBase InstigatorCharacter = Cast<ACharacterBase>(Instigator);
+        if (IsValid(InstigatorCharacter))
+        {
+            AAIControllerBase InstigatorCharacterController = Cast<AAIControllerBase>(InstigatorCharacter.Controller);
+            if (IsValid(InstigatorController))
+            {
+                ACharacterBase TargetCharacter = InstigatorCharacterController.Target.Get();
+                if (IsValid(TargetCharacter))
+                {
+                    TArray<USceneComponent> ComponentsArray;
+                    RootComponent.GetChildrenComponents(true, ComponentsArray);
+                    for (auto& Comp : ComponentsArray)
+                    {
+                        UParticleSystemComponent ChainParticle = Cast<UParticleSystemComponent>(Comp);
+                        if (IsValid(ChainParticle))
+                        {
+                            ChainParticle.SetBeamSourcePoint(0, TargetCharacter.GetHomingPoint().WorldLocation, 0);
+                            ChainParticle.SetBeamEndPoint(0, InstigatorCharacter.GetFirePoint().WorldLocation);
+                        }
+                    }
                 }
             }
         }
