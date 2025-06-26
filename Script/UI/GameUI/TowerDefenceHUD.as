@@ -1,4 +1,4 @@
-class AHUDBase : AHUD
+class ATowerDefenceHUD : AHUD
 {
     private TSubclassOf<UUIMainScreen> MainScreenClass;
 

@@ -4,5 +4,5 @@ class ATowerDefenceGameMode : AGameMode
     default PlayerControllerClass = ATowerDefencePlayerController;
     default DefaultPawnClass = ATowerDefenceGameCamera;
     default PlayerStateClass = ATowerDefencePlayerState;
-    default HUDClass = AHUDBase;
+    default HUDClass = ATowerDefenceHUD;
 };
